@@ -1,0 +1,34 @@
+<ion-menu contentId="main-content" type="overlay">
+  <ion-content>
+    <ion-list id="inbox-list">
+
+      <div class="avatar">
+        <ion-avatar>
+          <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+        </ion-avatar>
+      </div>
+
+      <ion-list-header>Manali</ion-list-header>
+      <ion-note>manali.disolutions&#64;gmail.com</ion-note>
+
+      <ion-menu-toggle auto-hide="false">
+
+        <ion-item [routerLink]="['/home']" lines="none" routerLinkActive="selected">
+          <ion-icon aria-hidden="true" slot="start" name="home"></ion-icon>
+          <ion-label>Home</ion-label>
+        </ion-item>
+
+        <ion-item [routerLink]="['/login']" lines="none" routerLinkActive="selected">
+          <ion-icon aria-hidden="true" slot="start" name="person-circle"></ion-icon>
+          <ion-label>Login</ion-label>
+        </ion-item>
+
+        <ion-item [routerLink]="['/signup']" lines="none" routerLinkActive="selected">
+          <ion-icon aria-hidden="true" slot="start" name="person-add"></ion-icon>
+          <ion-label>Signup</ion-label>
+        </ion-item>
+
+      </ion-menu-toggle>
+    </ion-list>
+  </ion-content>
+</ion-menu>
