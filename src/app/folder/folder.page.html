@@ -5,12 +5,20 @@
     </ion-buttons>
     <ion-title>Home</ion-title>
   </ion-toolbar>
+  <ion-toolbar>
+    <ion-searchbar [debounce]="500" color="primary" #search (ionInput)="handleInput(search.value)"></ion-searchbar>
+  </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content [fullscreen]="true">
+  <ion-list>
+    <ion-item *ngFor="let result of results">
+      <ion-label>{{ result }}</ion-label>
+    </ion-item>
+  </ion-list>
 
-    <ion-button class="openDialogButton" id="open-custom-dialog" expand="block">Open Dialog</ion-button>
-
+  <ion-button class="openDialogButton" id="open-custom-dialog" expand="block">Open Dialog</ion-button>
+  
     <ion-modal id="example-modal" #modal trigger="open-custom-dialog">
       <ng-template>
         <div class="wrapper">
@@ -42,3 +50,24 @@
     </ion-modal>
 
 </ion-content>
+
+<ion-tabs>
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="home">
+      <ion-icon name="play-circle"></ion-icon>
+      Listen Now
+    </ion-tab-button>
+    <ion-tab-button tab="radio">
+      <ion-icon name="radio"></ion-icon>
+      Radio
+    </ion-tab-button>
+    <ion-tab-button tab="library">
+      <ion-icon name="library"></ion-icon>
+      Library
+    </ion-tab-button>
+    <ion-tab-button tab="search">
+      <ion-icon name="search"></ion-icon>
+      Search
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>
