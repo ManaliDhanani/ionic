@@ -6,13 +6,17 @@ import { FolderPageRoutingModule } from './folder-routing.module';
 import { FolderPage } from './folder.page';
 import { FooterPage } from '../footer/footer.page';
 import { ModalPage } from './modal/modal.page';
+import { CalendarModule } from 'primeng/calendar';
+import { ButtonModule } from 'primeng/button';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    FolderPageRoutingModule
+    FolderPageRoutingModule,
+    CalendarModule,
+    ButtonModule
   ],
   declarations: [FolderPage, FooterPage, ModalPage]
 })

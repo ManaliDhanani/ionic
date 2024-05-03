@@ -31,6 +31,7 @@ export class FolderPage implements OnInit {
     'New York',
   ];
   public results = [...this.data];
+  date2: Date | undefined;
   
 
   constructor(

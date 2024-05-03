@@ -19,3 +19,15 @@ ion-content {
 #open-dialog{
   margin-bottom: 1rem;
 }
+
+// :host ::ng-deep p-calendar{
+//   width: 100%;
+//   display: block !important;
+// }
+
+:host ::ng-deep .p-calendar {
+  position: relative !important;
+  display: inline-flex !important;
+  min-width: 95% !important;
+  margin: 10px 10px !important;
+}

@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { range } from 'rxjs';
 import { ToastService } from '../services/toastr.service';
 
 @Component({
@@ -21,7 +20,7 @@ export class LoginPage implements OnInit {
     private router: Router,
     private http: HttpClient,
     private toastrService: ToastService
-  ) { }
+  ) {}
 
   handleRefresh(event) {
     setTimeout(() => {
