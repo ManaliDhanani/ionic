@@ -23,32 +23,35 @@
           <ion-list>
             <ion-item>
               <ion-input 
+                type="email"
                 label="Email" 
-                formControlName="email" 
+                formControlName="Email" 
                 labelPlacement="floating" 
-                placeholder="Enter email">
+                placeholder="Enter email"
+                autocomplete="off">
               </ion-input>
 
               <ion-icon 
                 name="alert-circle" 
                 slot="end" 
-                *ngIf="loginForm.get('email').invalid && (loginForm.get('email').dirty || submitted)">
+                *ngIf="loginForm.get('Email').invalid && (loginForm.get('Email').dirty || submitted)">
               </ion-icon>
             </ion-item>
 
-            <ion-text color="danger" *ngIf="loginForm.get('email').invalid && (loginForm.get('email').dirty || submitted)">
-              <p *ngIf="loginForm.get('email').hasError('required')">*Email is required</p>
-              <p *ngIf="loginForm.get('email').hasError('email')">*Invalid email format</p>
+            <ion-text color="danger" *ngIf="loginForm.get('Email').invalid && (loginForm.get('Email').dirty || submitted)">
+              <p *ngIf="loginForm.get('Email').hasError('required')">*Email is required</p>
+              <p *ngIf="loginForm.get('Email').hasError('Email')">*Invalid email format</p>
             </ion-text>
 
             <ion-item>
               <ion-input 
                 #passwordInput 
-                formControlName="password" 
+                formControlName="Password" 
                 type="password" 
                 label="Password" 
                 labelPlacement="floating" 
-                placeholder="Enter password">
+                placeholder="Enter password"
+                autocomplete="off">
               </ion-input>
 
               <ion-icon 
@@ -62,12 +65,12 @@
               <ion-icon 
                 name="alert-circle" 
                 slot="end" 
-                *ngIf="loginForm.get('password').invalid && (loginForm.get('password').dirty || submitted)">
+                *ngIf="loginForm.get('Password').invalid && (loginForm.get('Password').dirty || submitted)">
               </ion-icon>
             </ion-item>
 
-            <ion-text color="danger" *ngIf="loginForm.get('password').invalid && (loginForm.get('password').dirty || submitted)">
-              <p *ngIf="loginForm.get('password').hasError('required')">*Password is required</p>
+            <ion-text color="danger" *ngIf="loginForm.get('Password').invalid && (loginForm.get('Password').dirty || submitted)">
+              <p *ngIf="loginForm.get('Password').hasError('required')">*Password is required</p>
             </ion-text>
 
             <ion-button type="submit" class="loginButton" expand="block" [disabled]="isLoading">

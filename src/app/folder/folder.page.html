@@ -1,4 +1,4 @@
-<ion-header [translucent]="true">
+<ion-header [translucent]="true" id="header">
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
@@ -10,64 +10,32 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-list>
-    <ion-item *ngFor="let result of results">
-      <ion-label>{{ result }}</ion-label>
-    </ion-item>
-  </ion-list>
+<ion-content>
 
-  <ion-button class="openDialogButton" id="open-custom-dialog" expand="block">Open Dialog</ion-button>
-  
-    <ion-modal id="example-modal" #modal trigger="open-custom-dialog">
-      <ng-template>
-        <div class="wrapper">
-          <h1 class="heading">Login</h1>
-          <ion-list>
-            <ion-item>
-              <ion-input label="Email" labelPlacement="floating" placeholder="Enter email"></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-input #passwordInput type="password" label="Password" labelPlacement="floating" placeholder="Enter password"></ion-input>
-              <ion-icon [name]="passwordInput.type === 'password' ? 'eye' : 'eye-off'" slot="end" (click)="togglePasswordVisibility(passwordInput)" class="small-icon" color="primary"></ion-icon>
-            </ion-item>
-            <ion-button class="loginButton" expand="block">Login</ion-button>
-            <!-- <ion-item button="true" detail="false" (click)="modal.dismiss()">
-              <ion-icon name="person-circle"></ion-icon>
-              <ion-label>Item 1</ion-label>
-            </ion-item>
-            <ion-item button="true" detail="false" (click)="modal.dismiss()">
-              <ion-icon name="person-circle"></ion-icon>
-              <ion-label>Item 2</ion-label>
-            </ion-item>
-            <ion-item button="true" detail="false" (click)="modal.dismiss()">
-              <ion-icon name="person-circle"></ion-icon>
-              <ion-label>Item 3</ion-label>
-            </ion-item> -->
-          </ion-list>
-        </div>
-      </ng-template>
-    </ion-modal>
+  <div class="content-container">
+    <ion-list>
+      <ion-item *ngFor="let result of results">
+        <ion-label>{{ result }}</ion-label>
+      </ion-item>
+    </ion-list>
 
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-button expand="block" style="font-size: 0.65rem;" id="open-dialog" (click)="successToastr()">Success Toast</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button expand="block" style="font-size: 0.66rem;" id="open-dialog" (click)="errorToastr()">Error Toast</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button expand="block" style="font-size: 0.66rem;" id="open-dialog" expand="block" (click)="openAlert()">Open Dialog</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <!-- <ion-button expand="block" (click)="openAlert()">Open Alert</ion-button> -->
+      
+  </div>
 </ion-content>
 
-<ion-tabs>
-  <ion-tab-bar slot="bottom">
-    <ion-tab-button tab="home">
-      <ion-icon name="play-circle"></ion-icon>
-      Listen Now
-    </ion-tab-button>
-    <ion-tab-button tab="radio">
-      <ion-icon name="radio"></ion-icon>
-      Radio
-    </ion-tab-button>
-    <ion-tab-button tab="library">
-      <ion-icon name="library"></ion-icon>
-      Library
-    </ion-tab-button>
-    <ion-tab-button tab="search">
-      <ion-icon name="search"></ion-icon>
-      Search
-    </ion-tab-button>
-  </ion-tab-bar>
-</ion-tabs>
+<app-footer></app-footer>

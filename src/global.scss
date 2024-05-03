@@ -39,3 +39,57 @@
 ion-menu-button {
     color: var(--ion-color-primary);
 }
+
+ion-toast.success-toast {
+    --background: rgb(187 247 208) !important;
+    --box-shadow: 3px 3px 10px 0 rgba(0, 0, 0, 0.2);
+    --color: rgb(21 128 61) !important;
+}
+ion-toast.success-toast::part(button) {
+    color: rgb(21 128 61) !important;
+    font-size: 15px;
+}
+
+ion-toast.error-toast {
+    --background: rgb(254 202 202) !important;
+    --box-shadow: 3px 3px 10px 0 rgba(0, 0, 0, 0.2);
+    --color: rgb(185 28 28) !important;
+}
+ion-toast.error-toast::part(button) {
+    color: rgb(185 28 28) !important;
+    font-size: 15px;
+}
+
+
+ion-alert.custom-alert {
+    --backdrop-opacity: 0.7;
+  }
+  
+  .custom-alert .alert-button-group {
+    padding: 8px;
+  }
+  
+  button.alert-button.alert-button-confirm {
+    background-color: rgb(0, 175, 0);
+    color: white;
+  }
+  
+  .md button.alert-button.alert-button-confirm {
+    border-radius: 4px;
+  }
+  
+  .ios .custom-alert button.alert-button {
+    border: 0.55px solid rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.2);
+  }
+  
+  .ios button.alert-button.alert-button-cancel {
+    border-right: 0;
+    border-bottom-left-radius: 13px;
+    border-top-left-radius: 13px;
+  }
+  
+  .ios button.alert-button.alert-button-confirm {
+    border-bottom-right-radius: 13px;
+    border-top-right-radius: 13px;
+  }
+

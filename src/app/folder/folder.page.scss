@@ -1,15 +1,11 @@
 
-#container {
-  text-align: center;
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+.content-container {
+  overflow-y: auto;
+  height: 82vh;
 }
 
-.openDialogButton {
-  margin: 1.5rem;
+ion-content {
+  overflow-y: scroll;
 }
 
 .loginButton {
@@ -20,49 +16,6 @@
   text-align: center;
 }
 
-ion-modal#example-modal {
-  --width: fit-content;
-  --min-width: 330px;
-  --height: fit-content;
-  --border-radius: 10px;
-  --box-shadow: 0 28px 48px rgba(0, 0, 0, 0.4);
+#open-dialog{
+  margin-bottom: 1rem;
 }
-
-ion-modal#example-modal h1 {
-  margin: 20px 20px 10px 20px;
-}
-
-ion-modal#example-modal ion-icon {
-  margin-right: 6px;
-
-  width: 48px;
-  height: 48px;
-
-  padding: 4px 0;
-
-  color: #aaaaaa;
-}
-
-ion-modal#example-modal .wrapper {
-  margin-bottom: 8px;
-}
-
-ion-modal#example-modal[_ngcontent-ng-c3538240709] ion-icon[_ngcontent-ng-c3538240709] {
-  height: 28px;
-}
-
-// #container strong {
-//   font-size: 20px;
-//   line-height: 26px;
-// }
-
-// #container p {
-//   font-size: 16px;
-//   line-height: 22px;
-//   color: #8c8c8c;
-//   margin: 0;
-// }
-
-// #container a {
-//   text-decoration: none;
-// }

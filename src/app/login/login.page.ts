@@ -1,7 +1,9 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { range } from 'rxjs';
+import { ToastService } from '../services/toastr.service';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +18,9 @@ export class LoginPage implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    private http: HttpClient,
+    private toastrService: ToastService
   ) { }
 
   handleRefresh(event) {
@@ -37,8 +41,8 @@ export class LoginPage implements OnInit {
 
   LoginForm(){
     this.loginForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required]],
+      Email: ['', [Validators.required, Validators.email]],
+      Password: ['', [Validators.required]],
     });
   }
   
@@ -51,10 +55,22 @@ export class LoginPage implements OnInit {
     this.submitted = true;
     if(this.loginForm.invalid) return;
     this.isLoading = true;
-    this.router.navigate(['/home']);
-    this.loginForm.reset();
-    this.submitted = false;
-    this.isLoading = false;
+    this.http.post('http://192.168.1.25:8010/Api/PDMS/Login', this.loginForm.value).subscribe({
+      next: (res: any) => {
+        console.log(res);
+        if(res?.Token){
+          this.router.navigate(['/home']);
+          this.toastrService.successToast(res?.Message); 
+          this.loginForm.reset();
+          this.submitted = false;
+          this.isLoading = false;
+        }
+      },
+      error: (error: any) => {
+        this.toastrService.errorToast(error?.error?.Message);
+        this.isLoading = false;
+      }
+    })
   }
 
 
