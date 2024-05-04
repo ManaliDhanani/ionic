@@ -14,7 +14,7 @@ export class ToastService {
             message: msg,
             duration: 3000,
             position: 'top',
-            positionAnchor: 'header',
+            // positionAnchor: 'header',
             cssClass: 'success-toast',
             buttons: [
                 {
@@ -32,7 +32,7 @@ export class ToastService {
             message: msg,
             duration: 3000,
             position: 'top',
-            positionAnchor: 'header',
+            // positionAnchor: 'header',
             cssClass: 'error-toast',
             buttons: [
                 {

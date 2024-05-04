@@ -1,53 +1,92 @@
-#container {
-    text-align: center;
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-  }
+// #container {
+//     text-align: center;
+//     position: absolute;
+//     left: 0;
+//     right: 0;
+//     top: 50%;
+//     transform: translateY(-50%);
+//   }
 
-  :host ion-content {
-    --background: rgb(247, 247, 247);
-  }
+//   :host ion-content {
+//     --background: rgb(247, 247, 247);
+//   }
 
-  ion-card {
-    border-radius: 7px;
-  }
+//   ion-card {
+//     border-radius: 7px;
+//   }
 
+//   p {
+//     text-align: left;
+//     margin-left: 1rem;
+//   }
+  
+//   #container strong {
+//     font-size: 20px;
+//     line-height: 26px;
+//   }
+  
+//   .loginButton {
+//     margin: 1.7rem 10px 2rem 10px;
+//     font-weight: bold;
+//   }
+  
+//   .heading {
+//     text-align: center;
+//     margin-top: 3rem;
+//   }
+
+.header {
+  margin-top: 100px;
+  margin-bottom: 80px;
+  text-align: center;
+  .subTitle {
+    color: gray;
+    font-size: 0.9rem;
+  }
+  .title {
+    font-size: 2rem;
+  }
+}
+
+.input {
+  font-weight: 300;
+}
+
+ion-item {
+  --background: #f1f1f1;
+  border-radius: 10px;
+  margin-bottom: 16px;
+}
+
+ion-text {
+  font-size: 0.9rem;
+}
+
+.signupLink {
+  display: flex;
+  margin: auto;
+  flex-direction: row;
+  align-content: center;
+  position: absolute;
+  justify-content: center;
+  left: 0;
+  bottom: 0;
+  width: 80%;
+  right: 0;
   p {
-    text-align: left;
-    margin-left: 1rem;
+    font-size: 0.9rem;
   }
-  
-  #container strong {
-    font-size: 20px;
-    line-height: 26px;
+  a {
+    text-decoration: none;
   }
-  
-  .loginButton {
-    margin: 1.7rem 10px 2rem 10px;
-    font-weight: bold;
-  }
-  
-  .heading {
-    text-align: center;
-    margin-top: 3rem;
-  }
+}
 
-  
-  // #container strong {
-  //   font-size: 20px;
-  //   line-height: 26px;
-  // }
-  
-  // #container p {
-  //   font-size: 16px;
-  //   line-height: 22px;
-  //   color: #8c8c8c;
-  //   margin: 0;
-  // }
-  
-  // #container a {
-  //   text-decoration: none;
-  // }
+.forgotpassword {
+  display: flex;
+  justify-content: flex-end;
+  a {
+    font-weight: 400;
+    font-size: 0.8rem;
+    text-decoration: none;
+  }
+}

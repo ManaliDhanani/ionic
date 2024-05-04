@@ -1,4 +1,4 @@
-<ion-header [translucent]="true">
+<!-- <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
@@ -16,8 +16,7 @@
   <div id="container">
     <ion-card>
       <div class="wrapper">
-        <!-- <ion-range aria-label="Range with pin" [pin]="true" [pinFormatter]="pinFormatter"></ion-range> -->
-        <h1 class="heading">Login</h1>
+        <h1 class="heading">Sign in</h1>
         <form [formGroup]="loginForm" (ngSubmit)="onFormSubmit()">
 
           <ion-list>
@@ -84,4 +83,68 @@
 
     </ion-card>
   </div>
+</ion-content> -->
+
+
+<ion-content [fullscreen]="true">
+
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <div class="header">
+    <ion-title class="title">Welcome Back</ion-title>
+    <p class="subTitle">Sign in to access your account</p>
+  </div>
+
+  <form [formGroup]="loginForm" (ngSubmit)="onFormSubmit()">
+    <div class="ion-padding">
+
+      <ion-item>
+        <ion-input 
+          placeholder="email" 
+          class="input"
+          type="email"
+          formControlName="Email"
+          autocomplete="off">
+        </ion-input>
+        <ion-icon name="person-outline"></ion-icon>
+      </ion-item>
+
+      <ion-text color="danger" *ngIf="loginForm.get('Email').invalid && (loginForm.get('Email').dirty || submitted) || loginForm.get('Email').touched">
+        <p *ngIf="loginForm.get('Email').hasError('required')">*Email is required</p>
+        <p *ngIf="loginForm.get('Email').hasError('email')">*Invalid email format</p>
+      </ion-text>
+
+      <ion-item>
+        <ion-input 
+          type="password"
+          placeholder="password" 
+          class="input"
+          formControlName="Password"
+          autocomplete="off">
+        </ion-input>
+        <ion-icon name="lock-closed-outline"></ion-icon>
+      </ion-item>
+
+      <ion-text color="danger" *ngIf="loginForm.get('Password').invalid && (loginForm.get('Password').dirty || submitted) || (loginForm.get('Password').touched)">
+        <p *ngIf="loginForm.get('Password').hasError('required')">*Password is required</p>
+      </ion-text>
+
+      <div class="forgotpassword">
+        <a [routerLink]="['/forgot-password']" color="primary"> Forgot Password? </a>
+      </div>
+      <div class="signupLink">
+        <p>New member? <a [routerLink]="['/signup']" color="primary">Signup now</a></p>
+      </div>
+    </div>
+    <ion-fab vertical="bottom" horizontal="end" style="margin-bottom: 30px;">
+      <ion-fab-button (click)="onFormSubmit()">
+        <ion-icon name="chevron-forward"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  </form>
 </ion-content>
+
+
+<!-- <ion-range aria-label="Range with pin" [pin]="true" [pinFormatter]="pinFormatter"></ion-range> -->
