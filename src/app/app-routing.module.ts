@@ -18,7 +18,11 @@ const routes: Routes = [
   {
     path: 'footer',
     loadChildren: () => import('./footer/footer.module').then( m => m.FooterPageModule)
+  },  {
+    path: 'signup',
+    loadChildren: () => import('./signup/signup.module').then( m => m.SignupPageModule)
   },
+
   // {
   //   path: 'navigation',
   //   loadChildren: () => import('./navigation/navigation.module').then( m => m.NavigationPageModule)

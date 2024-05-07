@@ -8,6 +8,7 @@ import { FooterPage } from '../footer/footer.page';
 import { ModalPage } from './modal/modal.page';
 import { CalendarModule } from 'primeng/calendar';
 import { ButtonModule } from 'primeng/button';
+import { DropdownModule } from 'primeng/dropdown';
 
 @NgModule({
   imports: [
@@ -16,7 +17,8 @@ import { ButtonModule } from 'primeng/button';
     IonicModule,
     FolderPageRoutingModule,
     CalendarModule,
-    ButtonModule
+    ButtonModule,
+    DropdownModule
   ],
   declarations: [FolderPage, FooterPage, ModalPage]
 })

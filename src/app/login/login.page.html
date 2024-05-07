@@ -85,7 +85,6 @@
   </div>
 </ion-content> -->
 
-
 <ion-content [fullscreen]="true">
 
   <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
@@ -93,7 +92,7 @@
   </ion-refresher>
 
   <div class="header">
-    <ion-title class="title">Welcome Back</ion-title>
+    <p class="title">Welcome Back</p>
     <p class="subTitle">Sign in to access your account</p>
   </div>
 
@@ -108,7 +107,7 @@
           formControlName="Email"
           autocomplete="off">
         </ion-input>
-        <ion-icon name="person-outline"></ion-icon>
+        <ion-icon name="mail-outline"></ion-icon>
       </ion-item>
 
       <ion-text color="danger" *ngIf="loginForm.get('Email').invalid && (loginForm.get('Email').dirty || submitted) || loginForm.get('Email').touched">

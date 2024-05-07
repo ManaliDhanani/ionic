@@ -47,9 +47,9 @@ export class LoginPage implements OnInit {
     });
   }
   
-  togglePasswordVisibility(input: any){
-    input.type = input.type === 'password' ? 'text' : 'password';
-  }
+  // togglePasswordVisibility(input: any){
+  //   input.type = input.type === 'password' ? 'text' : 'password';
+  // }
 
   async onFormSubmit(){
 
