@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { FolderPageRoutingModule } from './folder-routing.module';
 import { FolderPage } from './folder.page';
-import { FooterPage } from '../footer/footer.page';
 import { ModalPage } from './modal/modal.page';
 import { CalendarModule } from 'primeng/calendar';
 import { ButtonModule } from 'primeng/button';
@@ -20,6 +19,6 @@ import { DropdownModule } from 'primeng/dropdown';
     ButtonModule,
     DropdownModule
   ],
-  declarations: [FolderPage, FooterPage, ModalPage]
+  declarations: [FolderPage, ModalPage]
 })
 export class FolderPageModule {}

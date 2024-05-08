@@ -2,16 +2,16 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-import { FooterPageRoutingModule } from './footer-routing.module';
-import { FooterPage } from './footer.page';
+import { PhotoGalleryPageRoutingModule } from './photo-gallery-routing.module';
+import { PhotoGalleryPage } from './photo-gallery.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    FooterPageRoutingModule
+    PhotoGalleryPageRoutingModule
   ],
-  declarations: [FooterPage]
+  declarations: [PhotoGalleryPage]
 })
-export class FooterPageModule {}
+export class PhotoGalleryPageModule {}
