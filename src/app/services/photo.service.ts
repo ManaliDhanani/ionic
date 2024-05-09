@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Camera, CameraResultType, CameraSource, Photo } from '@capacitor/camera';
 import { Filesystem, Directory } from '@capacitor/filesystem';
 import { Preferences } from '@capacitor/preferences';
+import { Capacitor, Plugins } from '@capacitor/core';
+const { FilesystemExtra } = Plugins;
 
 @Injectable({
   providedIn: 'root'
@@ -39,10 +41,28 @@ export class PhotoService {
     });
     const savedImageFile: any = await this.savePicture(capturedPhoto);
     this.photos.unshift(savedImageFile);
+
+    if (Capacitor.getPlatform() === 'android') {
+      await this.saveToGallery(savedImageFile.filepath);
+    }
+
     Preferences.set({
       key: this.PHOTO_STORAGE,
       value: JSON.stringify(this.photos),
     });
+  }
+
+  private async saveToGallery(filepath: string) {
+    try {
+      const savedFile = await FilesystemExtra['copy']({
+        from: filepath,
+        to: 'gallery',
+        directory: Directory.Data
+      });
+      console.log('Saved to gallery:', savedFile.uri);
+    } catch (error) {
+      console.error('Error saving to gallery:', error);
+    }
   }
 
   private async savePicture(photo: Photo) {
