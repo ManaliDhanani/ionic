@@ -94,5 +94,9 @@
     "karma-jasmine-html-reporter": "~2.1.0",
     "typescript": "~5.2.2"
   },
-  "description": "An Ionic project"
+  "description": "An Ionic project",
+  "engines" : { 
+    "npm" : "10.5.0",
+    "node" : "20.12.2"
+  }
 }
