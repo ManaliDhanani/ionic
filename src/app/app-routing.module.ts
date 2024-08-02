@@ -18,7 +18,8 @@ const routes: Routes = [
   {
     path: 'footer',
     loadChildren: () => import('./footer/footer.module').then( m => m.FooterPageModule)
-  },  {
+  },
+  {
     path: 'signup',
     loadChildren: () => import('./signup/signup.module').then( m => m.SignupPageModule)
   },
@@ -26,6 +27,18 @@ const routes: Routes = [
     path: 'photo-gallery',
     loadChildren: () => import('./photo-gallery/photo-gallery.module').then( m => m.PhotoGalleryPageModule)
   },
+  {
+    path: 'whats-app',
+    loadChildren: () => import('./whats-app/whats-app.module').then( m => m.WhatsAppPageModule)
+  },
+  {
+    path: 'calendar',
+    loadChildren: () => import('./calendar/calendar.module').then( m => m.CalendarPageModule)
+  },  {
+    path: 'social-sharing',
+    loadChildren: () => import('./social-sharing/social-sharing.module').then( m => m.SocialSharingPageModule)
+  },
+
 
   // {
   //   path: 'navigation',

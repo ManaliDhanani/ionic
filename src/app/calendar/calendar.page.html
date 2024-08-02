@@ -1,0 +1,60 @@
+<ion-header [translucent]="true" id="header">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Calendar</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <!-- <ion-button (click)="loadGapiClient()">load</ion-button> -->
+
+  <div class="heading-div"><h3>Add Event</h3></div>
+
+  <ion-item class="name-item">
+    <ion-label position="stacked">Add Event Name</ion-label>
+    <ion-input [(ngModel)]="newEventName" placeholder="Enter event name"></ion-input>
+  </ion-item>
+
+  <div class="date-lbl-div"><ion-label class="date-label">Add Event Date</ion-label></div>
+  <p-calendar expand="block" [(ngModel)]="newEventDate" [iconDisplay]="'input'" [showIcon]="true" inputId="icondisplay" class="full-width"></p-calendar>
+
+  <ion-button class="btn" expand="block" (click)="addNewEvent()" [disabled]="!newEventName || !newEventDate">Add Event</ion-button>
+
+  <!-- <button (click)="googleSignIn()">Add Event to Google Calendar</button> -->
+
+  <ion-item class="cal-item">
+    <ion-datetime presentation="date" displayFormat="MM/DD/YYYY" [(ngModel)]="selectedDate" (ionChange)="onDateChange($event)"></ion-datetime>
+  </ion-item>
+
+  <ion-list>
+    <ion-item *ngFor="let event of events">
+      <ion-label>
+        <h2>{{ event.title }}</h2>
+        <p>{{ event.startDate | date: 'short' }} - {{ event.endDate | date: 'short' }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-tabs>
+      <ion-tab-bar slot="bottom">
+        <ion-tab-button [routerLink]="['/home']">
+          <ion-icon name="home"></ion-icon>
+          Home
+        </ion-tab-button>
+        <ion-tab-button [routerLink]="['/photo-gallery']">
+          <ion-icon name="camera"></ion-icon>
+          Camera
+        </ion-tab-button>
+        <ion-tab-button [routerLink]="['/calendar']">
+          <ion-icon name="calendar"></ion-icon>
+          Calendar
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
+  </ion-toolbar> 
+</ion-footer>

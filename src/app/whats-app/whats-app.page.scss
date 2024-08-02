@@ -1,0 +1,24 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  
+    ion-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+  
+    .iframe-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+  
+    .whatsapp-iframe {
+      flex: 1;
+      width: 100%;
+      border: none;
+    }
+  }

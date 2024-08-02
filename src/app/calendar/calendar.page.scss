@@ -1,0 +1,36 @@
+ion-list {
+    margin-bottom: 5rem;
+}
+
+:host ::ng-deep .p-calendar {
+    position: relative !important;
+    display: inline-flex !important;
+    min-width: 95% !important;
+    margin: 10px 10px !important;
+}
+
+.date-label {
+    font-size: 12px;
+    margin-left: 16px;
+}
+
+.heading-div {
+    display: flex;
+    justify-content: center;
+}
+
+.name-item {
+    margin-top: 5px;
+}
+
+.btn {
+    margin: 4px 8px;
+}
+
+.date-lbl-div {
+    margin-top: 5px;
+}
+
+.cal-item {
+    margin-top: 10px;
+}

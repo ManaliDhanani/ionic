@@ -3,7 +3,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastService } from '../services/toastr.service';
-import { LoadingController } from '@ionic/angular';
+import { LoadingController, Platform } from '@ionic/angular';
+import { FacebookAuthProvider, signInWithPopup, getAuth, getRedirectResult, signInWithRedirect } from 'firebase/auth';
+import { FirebaseAuthentication } from '@capacitor-firebase/authentication';
+import { FacebookLogin, FacebookLoginResponse } from '@capacitor-community/facebook-login';
 
 @Component({
   selector: 'app-login',
@@ -15,13 +18,15 @@ export class LoginPage implements OnInit {
   loginForm: FormGroup;
   submitted: boolean = false;
   isLoading: boolean = false;
+  auth = getAuth(); 
 
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
     private http: HttpClient,
     private toastrService: ToastService,
-    public loadingCtrl: LoadingController
+    public loadingCtrl: LoadingController,
+    public platform: Platform,
   ) {}
 
   handleRefresh(event) {
@@ -33,6 +38,7 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {
    this.LoginForm();
+   console.log("this.auth", this.auth);
   }
 
   pinFormatter(value: number) {
@@ -85,5 +91,60 @@ export class LoginPage implements OnInit {
     // })
   }
 
+  async signInWithFacebook() {
 
+    // const FACEBOOK_PERMISSIONS = ['email', 'public_profile'];
+    // const result: FacebookLoginResponse = await FacebookLogin.login({ permissions: FACEBOOK_PERMISSIONS });
+
+    // if (result.accessToken) {
+    //   // Use the access token to sign in with your backend or use the user info
+    //   console.log('User signed in with Facebook', result.accessToken);
+    //   console.log('User data:', result);
+    // } else {
+    //   // Handle errors or user cancellation
+    //   console.log('User cancelled login or there was an error');
+    // }
+
+    const provider = new FacebookAuthProvider();
+    console.log('Sign in with Facebook initiated');
+
+    if(this.platform.is('hybrid')){
+      try {
+        console.log("Calling FirebaseAuthentication.signInWithFacebook()");
+        const result = await FirebaseAuthentication.signInWithFacebook();
+        console.log('result: ', result);
+        const user = result.user;
+        console.log('user: ', user);
+        this.router.navigate(['/home']);
+        this.toastrService.successToast('Logged in with Facebook!');
+      } catch (error) {
+        console.error('Error signing in with Facebook: ', error);
+        this.toastrService.errorToast('Error signing in with Facebook.');
+      }
+    }
+    else{
+      try {
+        const result = await signInWithPopup(this.auth, provider);
+        console.log('result: ', result);
+        const user = result.user;
+        console.log('user: ', user);
+        this.router.navigate(['/home']);
+        this.toastrService.successToast('Logged in with Facebook!');
+      } catch (error) {
+        console.error('Error signing in with Facebook: ', error);
+        this.toastrService.errorToast('Error signing in with Facebook.');
+      }
+    }
+
+        // if (this.platform.is('hybrid')) {
+    //   try {
+    //     await signInWithRedirect(this.auth, provider);
+    //     this.router.navigate(['/home']);
+    //     this.toastrService.successToast('Logged in with Facebook!');
+    //   } catch (error) {
+    //     console.error('Error signing in with Facebook: ', error);
+    //     this.toastrService.errorToast('Error signing in with Facebook.');
+    //   }
+    // }
+  }
 }

@@ -133,6 +133,11 @@
       <div class="forgotpassword">
         <a [routerLink]="['/forgot-password']" color="primary"> Forgot Password? </a>
       </div>
+
+      <ion-button (click)="signInWithFacebook()" expand="full">
+        Sign in with Facebook
+      </ion-button>
+      
       <div class="signupLink">
         <p>New member? <a [routerLink]="['/signup']" color="primary">Signup now</a></p>
       </div>

@@ -11,8 +11,16 @@
 
   <ion-grid>
     <ion-row>
-      <ion-col size="6" *ngFor="let photo of photoService.photos; index as position">
-        <ion-img [src]="photo.webviewPath"></ion-img>
+      <ion-col 
+        size="6" 
+        *ngFor="let photo of photoService.photos; index as position" 
+        style="display: flex; align-items: center; justify-content: center; height: 250px;"
+        >
+          <ion-img 
+            [src]="photo.webviewPath" 
+            (click)="showActionSheet(photo, position)" 
+            style="width: 150px; height: fit-content;">
+          </ion-img>
       </ion-col>
     </ion-row>
   </ion-grid>
@@ -28,17 +36,17 @@
   <ion-toolbar>
     <ion-tabs>
       <ion-tab-bar slot="bottom">
-        <ion-tab-button tab="home">
+        <ion-tab-button [routerLink]="['/home']">
           <ion-icon name="home"></ion-icon>
           Home
         </ion-tab-button>
-        <ion-tab-button [routerLink]="['/photo-gallery']" tab="camera">
+        <ion-tab-button [routerLink]="['/photo-gallery']">
           <ion-icon name="camera"></ion-icon>
           Camera
         </ion-tab-button>
-        <ion-tab-button tab="settings">
-          <ion-icon name="settings"></ion-icon>
-          Settings
+        <ion-tab-button [routerLink]="['/calendar']">
+          <ion-icon name="calendar"></ion-icon>
+          Calendar
         </ion-tab-button>
       </ion-tab-bar>
     </ion-tabs>

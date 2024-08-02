@@ -13,7 +13,7 @@ export class ToastService {
         const toast = await this.toastr.create({
             message: msg,
             duration: 3000,
-            position: 'top',
+            position: 'bottom',
             // positionAnchor: 'header',
             cssClass: 'success-toast',
             buttons: [
