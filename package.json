@@ -46,6 +46,7 @@
     "@ionic-native/file-chooser": "^5.36.0",
     "@ionic-native/file-path": "^5.36.0",
     "@ionic/angular": "^8.1.0",
+    "@ionic/core": "^8.2.6",
     "@ionic/pwa-elements": "^3.2.2",
     "cordova-plugin-android-permissions": "^1.1.5",
     "cordova-plugin-calendar": "^5.1.6",
@@ -95,8 +96,8 @@
     "typescript": "~5.2.2"
   },
   "description": "An Ionic project",
-  "engines" : { 
-    "npm" : ">=10.5.0",
-    "node" : ">=20.12.2"
+  "engines": {
+    "npm": ">=10.5.0",
+    "node": ">=20.12.2"
   }
 }
