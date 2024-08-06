@@ -16,7 +16,7 @@ import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import { getAnalytics } from 'firebase/analytics';
 
-// initializeApp(environment.firebaseConfig);
+initializeApp(environment.firebaseConfig);
 // const analytics = getAnalytics();
 // const auth = getAuth();
 

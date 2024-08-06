@@ -19,7 +19,7 @@ export class LoginPage implements OnInit {
   loginForm: FormGroup;
   submitted: boolean = false;
   isLoading: boolean = false;
-  // auth = getAuth(); 
+  auth = getAuth(); 
 
   constructor(
     private formBuilder: FormBuilder,
@@ -125,17 +125,17 @@ export class LoginPage implements OnInit {
       }
     }
     else{
-      // try {
-      //   const result = await signInWithPopup(this.auth, provider);
-      //   console.log('result: ', result);
-      //   const user = result.user;
-      //   console.log('user: ', user);
-      //   this.router.navigate(['/home']);
-      //   this.toastrService.successToast('Logged in with Facebook!');
-      // } catch (error) {
-      //   console.error('Error signing in with Facebook: ', error);
-      //   this.toastrService.errorToast('Error signing in with Facebook.');
-      // }
+      try {
+        const result = await signInWithPopup(this.auth, provider);
+        console.log('result: ', result);
+        const user = result.user;
+        console.log('user: ', user);
+        this.router.navigate(['/home']);
+        this.toastrService.successToast('Logged in with Facebook!');
+      } catch (error) {
+        console.error('Error signing in with Facebook: ', error);
+        this.toastrService.errorToast('Error signing in with Facebook.');
+      }
     }
 
         // if (this.platform.is('hybrid')) {
