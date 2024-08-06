@@ -4,7 +4,7 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>Home</ion-title>
-    <ion-button [routerLink]="['/login']" slot="end" style="margin-right: 7px;">Logout</ion-button>
+    <ion-button [routerLink]="['/login']" slot="end" style="margin-right: 7px;" (click)="logEvent('logout', { method: 'manual' })">Logout</ion-button>
   </ion-toolbar>
   <ion-toolbar>
     <ion-searchbar [debounce]="500" color="primary" #search (ionInput)="handleInput(search.value)"></ion-searchbar>
@@ -12,6 +12,14 @@
 </ion-header>
 
 <ion-content>
+
+  <ion-button expand="full" (click)="setUser()">Set User ID</ion-button>
+  <ion-button expand="full" (click)="setProperty()">Set User Property</ion-button>
+  <ion-button expand="full" (click)="logEvent('new_event', { method: 'manual'})">Log event</ion-button>
+  <ion-button expand="full" routerLink="/calendar">Go to second page</ion-button>
+  <!-- <ion-button expand="full" (click)="toggleDataCollection()">Toggle Data collection</ion-button> -->
+
+  <!-- Analytics enabled: {{ enabled }} -->
 
   <div class="content-container">
     <ion-list>

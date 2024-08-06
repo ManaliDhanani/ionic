@@ -15,4 +15,5 @@ ext {
     androidxEspressoCoreVersion = '3.5.1'
     cordovaAndroidVersion = '10.1.1'
     firebaseMessagingVersion = '23.3.1'
+    $firebaseAnalyticsVersion = '21.2.2'
 }

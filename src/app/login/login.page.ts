@@ -7,6 +7,7 @@ import { LoadingController, Platform } from '@ionic/angular';
 import { FacebookAuthProvider, signInWithPopup, getAuth, getRedirectResult, signInWithRedirect } from 'firebase/auth';
 import { FirebaseAuthentication } from '@capacitor-firebase/authentication';
 import { FacebookLogin, FacebookLoginResponse } from '@capacitor-community/facebook-login';
+import { AnalyticsService } from '../services/analytics.service';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,7 @@ export class LoginPage implements OnInit {
   loginForm: FormGroup;
   submitted: boolean = false;
   isLoading: boolean = false;
-  auth = getAuth(); 
+  // auth = getAuth(); 
 
   constructor(
     private formBuilder: FormBuilder,
@@ -27,6 +28,7 @@ export class LoginPage implements OnInit {
     private toastrService: ToastService,
     public loadingCtrl: LoadingController,
     public platform: Platform,
+    public analyticsService: AnalyticsService
   ) {}
 
   handleRefresh(event) {
@@ -38,7 +40,6 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {
    this.LoginForm();
-   console.log("this.auth", this.auth);
   }
 
   pinFormatter(value: number) {
@@ -69,6 +70,7 @@ export class LoginPage implements OnInit {
     loading.dismiss();
     this.loginForm.reset();
     this.submitted = false;
+    this.analyticsService.logEvent('login', { method: 'email' });
     this.router.navigate(['/home']);
     this.toastrService.successToast("login successfully"); 
 
@@ -123,17 +125,17 @@ export class LoginPage implements OnInit {
       }
     }
     else{
-      try {
-        const result = await signInWithPopup(this.auth, provider);
-        console.log('result: ', result);
-        const user = result.user;
-        console.log('user: ', user);
-        this.router.navigate(['/home']);
-        this.toastrService.successToast('Logged in with Facebook!');
-      } catch (error) {
-        console.error('Error signing in with Facebook: ', error);
-        this.toastrService.errorToast('Error signing in with Facebook.');
-      }
+      // try {
+      //   const result = await signInWithPopup(this.auth, provider);
+      //   console.log('result: ', result);
+      //   const user = result.user;
+      //   console.log('user: ', user);
+      //   this.router.navigate(['/home']);
+      //   this.toastrService.successToast('Logged in with Facebook!');
+      // } catch (error) {
+      //   console.error('Error signing in with Facebook: ', error);
+      //   this.toastrService.errorToast('Error signing in with Facebook.');
+      // }
     }
 
         // if (this.platform.is('hybrid')) {

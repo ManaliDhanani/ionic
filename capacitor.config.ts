@@ -14,6 +14,10 @@ const config: CapacitorConfig = {
     },
     PushNotifications: {
       presentationOptions: ["badge", "sound", "alert"]
+    },
+    FirebaseAnalytics: {
+      collectionEnabled: true,
+      screenNameTracking: true
     }
   }
 };

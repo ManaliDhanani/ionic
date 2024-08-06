@@ -15,13 +15,10 @@ import { environment } from 'src/environments/environment';
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import { getAnalytics } from 'firebase/analytics';
-// import { SocialSharing } from '@awesome-cordova-plugins/social-sharing/ngx';
-// import { FileChooser } from '@ionic-native/file-chooser/ngx';
-// import { FilePath } from '@ionic-native/file-path/ngx';
 
-initializeApp(environment.firebaseConfig);
-const analytics = getAnalytics();
-const auth = getAuth();
+// initializeApp(environment.firebaseConfig);
+// const analytics = getAnalytics();
+// const auth = getAuth();
 
 @NgModule({
   declarations: [AppComponent, NavigationPage],
@@ -38,16 +35,8 @@ const auth = getAuth();
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     Calendar,
-    // SocialSharing,
-    // FilePath,
-    // FileChooser,
   ],
   bootstrap: [AppComponent],
 })
 export class AppModule {
-  // constructor() {
-  //   // Initialize Firebase
-  //   initializeApp(environment.firebaseConfig);
-  //   const analytics = getAnalytics();
-  // }
 }
