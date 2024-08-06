@@ -12,7 +12,7 @@ export class AppComponent {
 
   constructor(
     public platForm: Platform,
-    public meta: Meta
+    public metaService: Meta
   ) {
     if(this.platForm.is('android')){
       this.initNotification();
@@ -21,9 +21,11 @@ export class AppComponent {
 
   ngOnInit(){
 
-    this.meta.updateTag({ property: 'og:url', content: 'https://angularhttpclient-d6c80.web.app' });
-    this.meta.updateTag({ property: 'og:image', content: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBzBi45HXAbgiDwur_NYpYHzWaccngbhyQvA&s' });
-    
+    this.metaService.removeTag("property='og:url'");
+    this.metaService.removeTag("property='og:image'");
+    this.metaService.addTag({ property: 'og:url', content: 'https://angularhttpclient-d6c80.web.app' });
+    this.metaService.addTag({ property: 'og:image', content: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBzBi45HXAbgiDwur_NYpYHzWaccngbhyQvA&s' });
+
   }
 
   initNotification(){
