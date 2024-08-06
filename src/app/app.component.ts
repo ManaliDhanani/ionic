@@ -20,8 +20,8 @@ export class AppComponent {
   }
 
   ngOnInit(){
-    this.meta.addTag({ property: 'og:url', content: 'https://angularhttpclient-d6c80.web.app' });
-    this.meta.addTag({ property: 'og:image', content: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBzBi45HXAbgiDwur_NYpYHzWaccngbhyQvA&s' });
+    this.meta.updateTag({ property: 'og:url', content: 'https://angularhttpclient-d6c80.web.app' });
+    this.meta.updateTag({ property: 'og:image', content: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBzBi45HXAbgiDwur_NYpYHzWaccngbhyQvA&s' });
   }
 
   initNotification(){
@@ -62,7 +62,4 @@ export class AppComponent {
       console.log('Delivered notifications', notificationList);
     })
   }
-
-  new(){}
-
 }
