@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-// import { Meta } from '@angular/platform-browser';
+import { Meta } from '@angular/platform-browser';
 import { ActionPerformed, PushNotifications, PushNotificationSchema, Token } from "@capacitor/push-notifications";
 import { Platform } from '@ionic/angular';
 
@@ -12,7 +12,7 @@ export class AppComponent {
 
   constructor(
     public platForm: Platform,
-    // public meta: Meta
+    public meta: Meta
   ) {
     if(this.platForm.is('android')){
       this.initNotification();
@@ -20,8 +20,8 @@ export class AppComponent {
   }
 
   ngOnInit(){
-    // this.meta.updateTag({ property: 'og:url', content: 'https://angularhttpclient-d6c80.web.app' });
-    // this.meta.updateTag({ property: 'og:image', content: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBzBi45HXAbgiDwur_NYpYHzWaccngbhyQvA&s' });
+    this.meta.updateTag({ property: 'og:url', content: 'https://angularhttpclient-d6c80.web.app' });
+    this.meta.updateTag({ property: 'og:image', content: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBzBi45HXAbgiDwur_NYpYHzWaccngbhyQvA&s' });
   }
 
   initNotification(){
