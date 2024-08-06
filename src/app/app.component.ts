@@ -21,10 +21,12 @@ export class AppComponent {
 
   ngOnInit(){
 
-    this.metaService.removeTag("property='og:url'");
-    this.metaService.removeTag("property='og:image'");
-    this.metaService.addTag({ property: 'og:url', content: 'https://angularhttpclient-d6c80.web.app' });
-    this.metaService.addTag({ property: 'og:image', content: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBzBi45HXAbgiDwur_NYpYHzWaccngbhyQvA&s' });
+    // this.metaService.removeTag("property='og:url'");
+    // this.metaService.removeTag("property='og:image'");
+    // this.metaService.addTag({ property: 'og:url', content: 'https://angularhttpclient-d6c80.web.app' });
+    // this.metaService.addTag({ property: 'og:image', content: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBzBi45HXAbgiDwur_NYpYHzWaccngbhyQvA&s' });
+
+    // console.log('Meta tags updated:', this.metaService.getTag("property='og:url'"), this.metaService.getTag("property='og:image'"));
 
   }
 
