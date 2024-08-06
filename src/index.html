@@ -24,13 +24,20 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
 
-  <meta property="og:url" content="https://angularhttpclient-d6c80.web.app" />
-  <meta property="og:image" content="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBzBi45HXAbgiDwur_NYpYHzWaccngbhyQvA&s">
+  <meta property="og:url" id="ogUrlMeta" content="" />
+  <meta property="og:image" id="ogImgUrlMeta" content="">
 
 </head>
 
 <body>
   <app-root></app-root>
+
+  <script>
+    let appUrl = 'https://angularhttpclient-d6c80.web.app';
+    let imageUrl = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBzBi45HXAbgiDwur_NYpYHzWaccngbhyQvA&s';
+    document.getElementById('ogUrlMeta').setAttribute('content', appUrl);
+    document.getElementById('ogImgUrlMeta').setAttribute('content', imageUrl);
+  </script>
 </body>
 
 </html>
