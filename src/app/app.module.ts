@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Meta } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppComponent } from './app.component';
@@ -35,6 +35,7 @@ initializeApp(environment.firebaseConfig);
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     Calendar,
+    Meta
   ],
   bootstrap: [AppComponent],
 })
