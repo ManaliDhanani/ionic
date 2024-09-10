@@ -53,6 +53,8 @@ dependencies {
     implementation 'com.google.android.gms:play-services-base:18.5.0'
     implementation platform('com.google.firebase:firebase-bom:33.1.2')
     implementation 'com.google.firebase:firebase-analytics'
+    implementation 'com.google.android.gms:play-services-auth:21.2.0'
+
 //    implementation 'com.getcapacitor:capacitor-android:5.0.0'
 //    implementation 'com.google.firebase:firebase-core:21.1.1'
 //    implementation project(':capacitor-community-firebase-messaging')

@@ -4,10 +4,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastService } from '../services/toastr.service';
 import { LoadingController, Platform } from '@ionic/angular';
-import { FacebookAuthProvider, signInWithPopup, getAuth, getRedirectResult, signInWithRedirect } from 'firebase/auth';
+import { FacebookAuthProvider, signInWithPopup, getAuth, getRedirectResult, signInWithRedirect, GoogleAuthProvider } from 'firebase/auth';
 import { FirebaseAuthentication } from '@capacitor-firebase/authentication';
 import { FacebookLogin, FacebookLoginResponse } from '@capacitor-community/facebook-login';
 import { AnalyticsService } from '../services/analytics.service';
+import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
 
 @Component({
   selector: 'app-login',
@@ -40,6 +41,13 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {
    this.LoginForm();
+   this.initializeApp();
+  }
+
+  initializeApp() {
+    this.platform.ready().then(() => {
+      GoogleAuth.initialize();
+    })
   }
 
   pinFormatter(value: number) {
@@ -148,5 +156,31 @@ export class LoginPage implements OnInit {
     //     this.toastrService.errorToast('Error signing in with Facebook.');
     //   }
     // }
+  }
+
+  async signInWithGoogle(){
+    if(this.platform.is('hybrid')){
+      try {
+        const result = GoogleAuth.signIn();
+        console.log('result: ', result);
+      } catch (error) {
+        console.error('Error signing in with Google: ', error);
+        this.toastrService.errorToast('Error signing in with Google.');
+      }
+    } else {
+      try{
+        const provider = new GoogleAuthProvider();
+        console.log('Sign in with google initiated');
+  
+        const result = await signInWithPopup(this.auth, provider);
+        const user = result.user;
+        console.log('user: ', user);
+        this.router.navigate(['/home']);
+        this.toastrService.successToast('Logged in with Google!');
+      } catch (error) {
+        console.error('Error signing in with Google: ', error);
+        this.toastrService.errorToast('Error signing in with Google.');
+      }
+    }
   }
 }

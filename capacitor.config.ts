@@ -18,6 +18,11 @@ const config: CapacitorConfig = {
     FirebaseAnalytics: {
       collectionEnabled: true,
       screenNameTracking: true
+    },
+    GoogleAuth: {
+      scopes: ['profile', 'email'],
+      serverClientId: '149263745013-739o25mcje7chhaeqg3l2ibqfjbd8csn.apps.googleusercontent.com',
+      forceCodeForRefreshToken: true
     }
   }
 };
