@@ -179,7 +179,7 @@ export class LoginPage implements OnInit {
         this.toastrService.successToast('Logged in with Google!');
       } catch (error) {
         console.error('Error signing in with Google: ', error);
-        this.toastrService.errorToast('Error signing in with Google.')
+        this.toastrService.errorToast('Error signing in with Google.');
       }
     }
   }
