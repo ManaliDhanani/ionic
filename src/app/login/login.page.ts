@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastService } from '../services/toastr.service';
 import { LoadingController, Platform } from '@ionic/angular';
-import { FacebookAuthProvider, signInWithPopup, getAuth, getRedirectResult, signInWithRedirect, GoogleAuthProvider } from 'firebase/auth';
+import { FacebookAuthProvider, signInWithPopup, getAuth, GoogleAuthProvider, signInWithCredential } from 'firebase/auth';
 import { FirebaseAuthentication } from '@capacitor-firebase/authentication';
 import { FacebookLogin, FacebookLoginResponse } from '@capacitor-community/facebook-login';
 import { AnalyticsService } from '../services/analytics.service';
@@ -29,7 +29,8 @@ export class LoginPage implements OnInit {
     private toastrService: ToastService,
     public loadingCtrl: LoadingController,
     public platform: Platform,
-    public analyticsService: AnalyticsService
+    public analyticsService: AnalyticsService,
+    // public googlePlus: GooglePlusOriginal
   ) {}
 
   handleRefresh(event) {
@@ -161,11 +162,17 @@ export class LoginPage implements OnInit {
   async signInWithGoogle(){
     if(this.platform.is('hybrid')){
       try {
-        const result = GoogleAuth.signIn();
+        const result = await GoogleAuth.signIn();
         console.log('result: ', result);
+        const auth = getAuth();
+        const credential = GoogleAuthProvider.credential(result.authentication.idToken);
+        console.log('credential: ', credential);
+        await signInWithCredential(auth, credential);
+        this.router.navigate(['/home']);
+        this.toastrService.successToast('Logged in with google!');
       } catch (error) {
         console.error('Error signing in with Google: ', error);
-        this.toastrService.errorToast('Error signing in with Google.');
+        this.toastrService.errorToast(error);
       }
     } else {
       try{
@@ -181,6 +188,19 @@ export class LoginPage implements OnInit {
         console.error('Error signing in with Google: ', error);
         this.toastrService.errorToast('Error signing in with Google.');
       }
+    }
+  }
+
+  async signOutFromGoogle() {
+    try {
+      await GoogleAuth.signOut();
+      const auth = getAuth();
+      await auth.signOut();
+      this.router.navigate(['/login']);
+      this.toastrService.successToast('Signed out successfully!');
+    } catch (error) {
+      console.error('Error signing out on hybrid platform: ', error);
+      this.toastrService.errorToast('Error signing out.');
     }
   }
 }

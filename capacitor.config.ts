@@ -17,12 +17,13 @@ const config: CapacitorConfig = {
     },
     FirebaseAnalytics: {
       collectionEnabled: true,
-      screenNameTracking: true
+      screenNameTracking: true,
+      enabled: true
     },
     GoogleAuth: {
       scopes: ['profile', 'email'],
-      serverClientId: '149263745013-739o25mcje7chhaeqg3l2ibqfjbd8csn.apps.googleusercontent.com',
-      forceCodeForRefreshToken: true
+      serverClientId: '149263745013-sm102vf9deuj39gmiateq175u85t5pv7.apps.googleusercontent.com',
+      forceCodeForRefreshToken: true,
     }
   }
 };
