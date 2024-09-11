@@ -160,7 +160,7 @@ export class LoginPage implements OnInit {
   }
 
   async signInWithGoogle(){
-    if(this.platform.is('hybrid')){
+    // if(this.platform.is('hybrid')){
       try {
         const result = await GoogleAuth.signIn();
         console.log('result: ', result);
@@ -174,21 +174,21 @@ export class LoginPage implements OnInit {
         console.error('Error signing in with Google: ', error);
         this.toastrService.errorToast(error);
       }
-    } else {
-      try{
-        const provider = new GoogleAuthProvider();
-        console.log('Sign in with google initiated');
+    // } else {
+    //   try{
+    //     const provider = new GoogleAuthProvider();
+    //     console.log('Sign in with google initiated');
   
-        const result = await signInWithPopup(this.auth, provider);
-        const user = result.user;
-        console.log('user: ', user);
-        this.router.navigate(['/home']);
-        this.toastrService.successToast('Logged in with Google!');
-      } catch (error) {
-        console.error('Error signing in with Google: ', error);
-        this.toastrService.errorToast('Error signing in with Google.');
-      }
-    }
+    //     const result = await signInWithPopup(this.auth, provider);
+    //     const user = result.user;
+    //     console.log('user: ', user);
+    //     this.router.navigate(['/home']);
+    //     this.toastrService.successToast('Logged in with Google!');
+    //   } catch (error) {
+    //     console.error('Error signing in with Google: ', error);
+    //     this.toastrService.errorToast('Error signing in with Google.');
+    //   }
+    // }
   }
 
   async signOutFromGoogle() {
