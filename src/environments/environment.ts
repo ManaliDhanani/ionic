@@ -1,15 +1,15 @@
 
 export const environment = {
   production: false,
-  mapsKey: 'undefined',
+  mapsKey: '',
   firebaseConfig: {
-    apiKey: 'undefined',
-    authDomain: 'undefined',
-    databaseURL: 'undefined',
-    projectId: 'undefined',
-    storageBucket: 'undefined',
-    messagingSenderId: 'undefined',
-    appId: 'undefined',
-    measurementId: 'undefined'
+    apiKey: '',
+    authDomain: '',
+    databaseURL: '',
+    projectId: '',
+    storageBucket: '',
+    messagingSenderId: '',
+    appId: '',
+    measurementId: ''
   }
 };
