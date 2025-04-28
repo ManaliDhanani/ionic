@@ -18,7 +18,7 @@ jobs:
           node-version: 20
 
       - name: Install project dependencies
-      - run: npm ci --legacy-peer-deps
+        run: npm ci --legacy-peer-deps
 
       - name: Inject environment variables and generate environment.ts
         env:
@@ -38,7 +38,7 @@ jobs:
         run: npm run build
 
       - name: Deploy to Firebase Hosting
-      - uses: FirebaseExtended/action-hosting-deploy@v0
+        uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_ANGULARHTTPCLIENT_D6C80 }}
