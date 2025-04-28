@@ -15,6 +15,10 @@ import { environment } from 'src/environments/environment';
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import { getAnalytics } from 'firebase/analytics';
+import { StoreModule } from '@ngrx/store';
+import { userReducer } from './signup/store/user.reducer';
+import { MediaCapture } from '@awesome-cordova-plugins/media-capture/ngx';
+import { File } from '@awesome-cordova-plugins/file/ngx';
 
 initializeApp(environment.firebaseConfig);
 // const analytics = getAnalytics();
@@ -31,10 +35,13 @@ initializeApp(environment.firebaseConfig);
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
+    StoreModule.forRoot({ users: userReducer })
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     Calendar,
+    MediaCapture,
+    File
   ],
   bootstrap: [AppComponent],
 })
