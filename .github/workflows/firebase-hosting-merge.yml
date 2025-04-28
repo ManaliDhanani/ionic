@@ -20,7 +20,7 @@ jobs:
       - name: Install project dependencies
         run: npm ci --legacy-peer-deps
 
-      - name: Inject environment variables and generate environment.ts
+      - name: Inject environment variables and generate environment.ts and Build Angular app
         env:
           MAPS_KEY: ${{ secrets.MAPS_KEY }}
           FIREBASE_API_KEY: ${{ secrets.FIREBASE_API_KEY }}
@@ -31,8 +31,6 @@ jobs:
           FIREBASE_MESSAGING_SENDER_ID: ${{ secrets.FIREBASE_MESSAGING_SENDER_ID }}
           FIREBASE_APP_ID: ${{ secrets.FIREBASE_APP_ID }}
           FIREBASE_MEASUREMENT_ID: ${{ secrets.FIREBASE_MEASUREMENT_ID }}
-
-      - name: Build Angular app
         run: npm run build
 
       - name: Deploy to Firebase Hosting
