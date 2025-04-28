@@ -3,21 +3,16 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>WhatsApp</ion-title>
+    <ion-title>Google Map</ion-title>
+    <!-- <ion-searchbar [(ngModel)]="searchQuery" (ionInput)="searchLocations()"></ion-searchbar> -->
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <!-- <div class="iframe-container">
-    <iframe id="whatsappWebFrame" src="https://web.whatsapp.com" class="whatsapp-iframe"></iframe>
-  </div> -->
-  <ion-fab vertical="bottom" horizontal="center" slot="fixed">
-    <!-- <ion-button (click)="open()">
-      open
-    </ion-button> -->
-  </ion-fab>
+  <div class="container">
+    <capacitor-google-map #map></capacitor-google-map>
+  </div>
 </ion-content>
-<!--  -->
 <ion-footer>
   <ion-toolbar>
     <ion-tabs>

@@ -1,0 +1,54 @@
+<ion-header [translucent]="true" id="header">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Video Recorder</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <!-- <ion-button expand="block" (click)="playRecording()">Play Recording</ion-button> -->
+
+  <div class="video-gallery">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6" *ngFor="let video of videoGallery">
+          <ion-card (click)="playRecording(video.path)">
+            <video [src]="video.path" controls muted="true" style="width: 100%; height: 100px;"></video>
+            <ion-card-content>
+              <p>{{ video.name }}</p>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  
+  <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+    <ion-fab-button (click)="startRecording()">
+      <ion-icon name="videocam"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-tabs>
+      <ion-tab-bar slot="bottom">
+        <ion-tab-button [routerLink]="['/home']">
+          <ion-icon name="home"></ion-icon>
+          Home
+        </ion-tab-button>
+        <ion-tab-button [routerLink]="['/photo-gallery']">
+          <ion-icon name="camera"></ion-icon>
+          Camera
+        </ion-tab-button>
+        <ion-tab-button [routerLink]="['/calendar']">
+          <ion-icon name="calendar"></ion-icon>
+          Calendar
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
+  </ion-toolbar> 
+</ion-footer>

@@ -8,6 +8,35 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:149263745013:android:2b50138fee1acade182abc",
+        "android_client_info": {
+          "package_name": "com.notification.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "149263745013-sm102vf9deuj39gmiateq175u85t5pv7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBc5oPWgKTyEWABig8rAu9d_FVDvmkTfng"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "149263745013-sm102vf9deuj39gmiateq175u85t5pv7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:149263745013:android:b954e7f3b0dc7f0e182abc",
         "android_client_info": {
           "package_name": "io.ionic.starter"

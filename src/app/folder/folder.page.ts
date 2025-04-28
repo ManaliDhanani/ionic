@@ -5,6 +5,7 @@ import { ModalPage } from './modal/modal.page';
 import { ToastService } from '../services/toastr.service';
 import { AlertController } from '@ionic/angular';
 import { AnalyticsService } from '../services/analytics.service';
+import { FirebaseAuthentication } from '@capacitor-firebase/authentication';
 
 @Component({
   selector: 'app-folder',
@@ -62,8 +63,9 @@ export class FolderPage implements OnInit {
   //   this.analyticsService.logEvent();
   // }
 
-  logEvent(name: string, params?: { [key: string]: any }) {
+  async logEvent(name: string, params?: { [key: string]: any }) {
     this.analyticsService.logEvent(name, params);
+    await FirebaseAuthentication.signOut();
 }
 
   toggleDataCollection(){

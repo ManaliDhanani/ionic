@@ -2,12 +2,12 @@ import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
   appId: 'io.ionic.starter',
-  appName: 'New App',
+  appName: 'Plugin app',
   webDir: 'www',
   plugins: {
     FirebaseAuthentication: {
       skipNativeAuth: false,
-      providers: ["facebook.com"],
+      providers: ["google.com"],
     },
     Share: {
       enabled: true
@@ -24,6 +24,11 @@ const config: CapacitorConfig = {
       scopes: ['profile', 'email'],
       serverClientId: '149263745013-sm102vf9deuj39gmiateq175u85t5pv7.apps.googleusercontent.com',
       forceCodeForRefreshToken: true,
+    },
+    LocalNotifications: {},
+    VideoRecorder: {
+      camera: "back",
+      previewFrames: []
     }
   }
 };

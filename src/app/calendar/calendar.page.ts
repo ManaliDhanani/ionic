@@ -50,7 +50,7 @@ export class CalendarPage implements OnInit {
   constructor(
     private platform: Platform, 
     private calendar: Calendar,
-    private googleCalendarService: GoogleCalendarService,
+    // private googleCalendarService: GoogleCalendarService,
     private toastrService: ToastService,
   ) {}
 

@@ -1,0 +1,58 @@
+<ion-header [translucent]="true" id="header">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Users</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="add-btn-div">
+    <ion-button (click)="addUser()"> <ion-icon name="add-circle" style="margin-right: 5px;"></ion-icon> Add </ion-button>
+  </div>
+  <ion-searchbar 
+    [debounce]="500" 
+    [(ngModel)]="searchTerm" 
+    (ionInput)="onSearchChange($event)" 
+    placeholder="Search Users"
+    (ionClear)="clearSearch()">
+  </ion-searchbar>
+  <ion-list>
+    <ion-item class="header">
+      <ion-label>Username</ion-label>
+      <ion-label style="margin-left: 47px;">Email</ion-label>
+      <ion-label style="margin-left: 143px;">Actions</ion-label>
+    </ion-item>
+    <ion-item *ngFor="let user of users">
+      <ion-label>{{ user.username }}</ion-label>
+      <ion-label class="email-label">({{ user.email }})</ion-label>
+      <ion-icon (click)="updateUser(user)" name="create-outline" color="primary" style="margin-right: 5px;"></ion-icon> 
+      <ion-icon (click)="openAlert(user.id)" name="trash-outline" color="danger"style="margin-right: 6px;"></ion-icon> 
+    </ion-item>
+    <ion-item *ngIf="!users.length" lines="none">
+      No users available
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-tabs>
+      <ion-tab-bar slot="bottom">
+        <ion-tab-button [routerLink]="['/home']">
+          <ion-icon name="home"></ion-icon>
+          Home
+        </ion-tab-button>
+        <ion-tab-button [routerLink]="['/photo-gallery']">
+          <ion-icon name="camera"></ion-icon>
+          Camera
+        </ion-tab-button>
+        <ion-tab-button [routerLink]="['/calendar']">
+          <ion-icon name="calendar"></ion-icon>
+          Calendar
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
+  </ion-toolbar> 
+</ion-footer>

@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { WhatsAppPageRoutingModule } from './whats-app-routing.module';
+import { UsersPageRoutingModule } from './users-routing.module';
 
-import { WhatsAppPage } from './whats-app.page';
+import { UsersPage } from './users.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    WhatsAppPageRoutingModule
+    UsersPageRoutingModule
   ],
-  declarations: [WhatsAppPage]
+  declarations: [UsersPage]
 })
-export class WhatsAppPageModule {}
+export class UsersPageModule {}

@@ -1,0 +1,34 @@
+.email-label {
+    margin-left: -74px;
+}
+
+.add-btn-div {
+    margin: 10px 0px 0px 10px;
+
+    ion-button {
+        --border-radius: 25px;
+    }
+}
+
+.header {
+    font-weight: bold;
+}
+
+ion-item {
+    height: 3.5rem;
+}
+
+.close-search-icon {
+    position: absolute;
+    top: 130px;
+    right: 20px;
+    font-size: 20px;
+    color: grey;
+}
+
+.sc-ion-searchbar-md-h {
+    --background: #ecf6ff;
+    --box-shadow: unset;
+    padding: 0px;
+    margin-top: 10px;
+}

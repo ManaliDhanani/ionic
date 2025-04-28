@@ -1,5 +1,6 @@
 ext {
     rgcfaIncludeFacebook = true
+    rgcfaIncludeGoogle = true
     minSdkVersion = 23
     compileSdkVersion = 34
     targetSdkVersion = 34

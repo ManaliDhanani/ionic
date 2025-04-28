@@ -1,5 +1,6 @@
 export const environment = {
   production: true,
+  mapsKey : 'AIzaSyDvaS5zz8c4iSP8YS6BiXbWUMYsFuYwqmY',
   firebaseConfig: {
     apiKey: "AIzaSyDvaS5zz8c4iSP8YS6BiXbWUMYsFuYwqmY",
     authDomain: "angularhttpclient-d6c80.firebaseapp.com",

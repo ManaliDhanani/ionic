@@ -28,16 +28,29 @@ const routes: Routes = [
     loadChildren: () => import('./photo-gallery/photo-gallery.module').then( m => m.PhotoGalleryPageModule)
   },
   {
-    path: 'whats-app',
-    loadChildren: () => import('./whats-app/whats-app.module').then( m => m.WhatsAppPageModule)
+    path: 'google-map',
+    loadChildren: () => import('./google-map/google-map.module').then( m => m.GoogleMapPageModule)
   },
   {
     path: 'calendar',
     loadChildren: () => import('./calendar/calendar.module').then( m => m.CalendarPageModule)
-  },  {
+  },
+  {
     path: 'social-sharing',
     loadChildren: () => import('./social-sharing/social-sharing.module').then( m => m.SocialSharingPageModule)
   },
+  {
+    path: 'users',
+    loadChildren: () => import('./users/users.module').then( m => m.UsersPageModule)
+  },  {
+    path: 'barcode-scanner',
+    loadChildren: () => import('./barcode-scanner/barcode-scanner.module').then( m => m.BarcodeScannerPageModule)
+  },
+  {
+    path: 'video-recorder',
+    loadChildren: () => import('./video-recorder/video-recorder.module').then( m => m.VideoRecorderPageModule)
+  },
+
 
 
   // {

@@ -10,6 +10,7 @@ import { FacebookLogin, FacebookLoginResponse } from '@capacitor-community/faceb
 import { AnalyticsService } from '../services/analytics.service';
 import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
 
+declare var gapi: any;
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -40,9 +41,14 @@ export class LoginPage implements OnInit {
     }, 2000);
   }
 
-  ngOnInit() {
+  async ngOnInit() {
    this.LoginForm();
    this.initializeApp();
+   await FirebaseAuthentication.signOut();
+
+  //  gapi.load('auth2', () => {
+  //   this.initializeGoogleAuth();
+  // });
   }
 
   initializeApp() {
@@ -103,31 +109,38 @@ export class LoginPage implements OnInit {
   }
 
   async signInWithFacebook() {
-
-    // const FACEBOOK_PERMISSIONS = ['email', 'public_profile'];
-    // const result: FacebookLoginResponse = await FacebookLogin.login({ permissions: FACEBOOK_PERMISSIONS });
-
-    // if (result.accessToken) {
-    //   // Use the access token to sign in with your backend or use the user info
-    //   console.log('User signed in with Facebook', result.accessToken);
-    //   console.log('User data:', result);
-    // } else {
-    //   // Handle errors or user cancellation
-    //   console.log('User cancelled login or there was an error');
-    // }
-
     const provider = new FacebookAuthProvider();
-    console.log('Sign in with Facebook initiated');
-
+    
     if(this.platform.is('hybrid')){
-      try {
-        console.log("Calling FirebaseAuthentication.signInWithFacebook()");
-        const result = await FirebaseAuthentication.signInWithFacebook();
-        console.log('result: ', result);
-        const user = result.user;
-        console.log('user: ', user);
-        this.router.navigate(['/home']);
-        this.toastrService.successToast('Logged in with Facebook!');
+      // try {
+      //   console.log("Calling FirebaseAuthentication.signInWithFacebook()");
+      //   const result = await FirebaseAuthentication.signInWithFacebook();
+      //   console.log('result: ', result);
+      //   const user = result.user;
+      //   console.log('user: ', user);
+      //   this.router.navigate(['/home']);
+      //   this.toastrService.successToast('Logged in with Facebook!');
+      // } catch (error) {
+        //   console.error('Error signing in with Facebook: ', error);
+        //   this.toastrService.errorToast('Error signing in with Facebook.');
+        // }
+        try {
+        console.log('Sign in with Facebook initiated');
+        const FACEBOOK_PERMISSIONS = ['email', 'user_birthday', 'user_photos', 'user_gender'];
+        const result: FacebookLoginResponse = await FacebookLogin.login({ permissions: FACEBOOK_PERMISSIONS });
+        // const credential = FacebookAuthProvider.credential(result.accessToken.token);
+        if (result.accessToken) {
+          this.router.navigate(['/home']);
+          this.toastrService.successToast('Logged in with Facebook!');
+        } else {
+          // Cancelled by user.
+        }
+        // const auth = getAuth();
+        // signInWithCredential(auth, credential).then(res => {
+        //   console.log(res);
+        //   this.router.navigate(['/home']);
+        //   this.toastrService.successToast('Logged in with Facebook!');
+        // })
       } catch (error) {
         console.error('Error signing in with Facebook: ', error);
         this.toastrService.errorToast('Error signing in with Facebook.');
@@ -146,50 +159,74 @@ export class LoginPage implements OnInit {
         this.toastrService.errorToast('Error signing in with Facebook.');
       }
     }
-
-        // if (this.platform.is('hybrid')) {
-    //   try {
-    //     await signInWithRedirect(this.auth, provider);
-    //     this.router.navigate(['/home']);
-    //     this.toastrService.successToast('Logged in with Facebook!');
-    //   } catch (error) {
-    //     console.error('Error signing in with Facebook: ', error);
-    //     this.toastrService.errorToast('Error signing in with Facebook.');
-    //   }
-    // }
   }
 
   async signInWithGoogle(){
-    // if(this.platform.is('hybrid')){
-      try {
-        const result = await GoogleAuth.signIn();
-        console.log('result: ', result);
-        const auth = getAuth();
-        const credential = GoogleAuthProvider.credential(result.authentication.idToken);
-        console.log('credential: ', credential);
-        await signInWithCredential(auth, credential);
-        this.router.navigate(['/home']);
-        this.toastrService.successToast('Logged in with google!');
-      } catch (error) {
-        console.error('Error signing in with Google: ', error);
-        this.toastrService.errorToast(error);
-      }
-    // } else {
-    //   try{
-    //     const provider = new GoogleAuthProvider();
-    //     console.log('Sign in with google initiated');
-  
-    //     const result = await signInWithPopup(this.auth, provider);
-    //     const user = result.user;
-    //     console.log('user: ', user);
-    //     this.router.navigate(['/home']);
-    //     this.toastrService.successToast('Logged in with Google!');
-    //   } catch (error) {
-    //     console.error('Error signing in with Google: ', error);
-    //     this.toastrService.errorToast('Error signing in with Google.');
-    //   }
+    // try {
+    //   const result = await GoogleAuth.signIn();
+    //   console.log('result: ', result);
+    //   const auth = getAuth();
+    //   const credential = GoogleAuthProvider.credential(result.authentication.idToken);
+    //   console.log('credential: ', credential);
+    //   await signInWithCredential(auth, credential);
+    //   this.router.navigate(['/home']);
+    //   this.toastrService.successToast('Logged in with google!');
+    // } catch (error) {
+    //   console.error('Error signing in with Google: ', error);
+    //   this.toastrService.errorToast(error);
     // }
+
+    try {
+      if(this.platform.is('hybrid')){
+        await FirebaseAuthentication.signInWithGoogle();
+        this.router.navigate(['/home']);
+        this.toastrService.successToast('Logged in with Google!');
+      } else {
+        const authInstance = gapi.auth2.getAuthInstance();
+        console.log('authInstance: ', authInstance);
+        const user = await authInstance.signIn();
+        console.log('user: ', user);
+        const id_token = user.getAuthResponse().id_token;
+        await this.authenticateWithFirebase(id_token);
+      }
+    }
+    catch (error) {
+      if(error.error != "popup_closed_by_user"){
+        console.error('Error signing in with Google: ', error);
+        this.toastrService.errorToast('Error signing in with Google.');
+      }
+    }
+    // const result = await FirebaseAuthentication.signInWithGoogle();
+    // console.log('result: ', result.credential.idToken);
+    // const auth = getAuth();
+    // const credential = GoogleAuthProvider.credential(result.credential.idToken);
+    // console.log('credential: ', credential);
+    // await signInWithCredential(auth, credential);
   }
+
+  authenticateWithFirebase(id_token: string) {
+    const credential = GoogleAuthProvider.credential(id_token);
+    signInWithCredential(this.auth, credential).then((result) => {
+      console.log("User signed in:", result.user);
+      this.router.navigate(['/home']);
+      this.toastrService.successToast('Logged in with Google!');
+    }).catch((error) => {
+      console.error("Error during sign-in:", error);
+    });
+  }
+
+  // initializeGoogleAuth() {
+  //   if (gapi.auth2 && gapi.auth2.getAuthInstance()) {
+  //     // Get the existing instance if it's already initialized
+  //     return gapi.auth2.getAuthInstance();
+  //   } else {
+  //     // Initialize it for the first time
+  //     return gapi.auth2.init({
+  //       client_id: '149263745013-sm102vf9deuj39gmiateq175u85t5pv7.apps.googleusercontent.com',
+  //       scope: 'profile email'
+  //     });
+  //   }
+  // }
 
   async signOutFromGoogle() {
     try {

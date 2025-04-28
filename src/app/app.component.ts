@@ -2,6 +2,10 @@ import { Component } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
 import { ActionPerformed, PushNotifications, PushNotificationSchema, Token } from "@capacitor/push-notifications";
 import { Platform } from '@ionic/angular';
+import { LocalNotifications, PermissionStatus } from '@capacitor/local-notifications';
+import { AppLauncher } from '@capacitor/app-launcher';
+import { ToastService } from './services/toastr.service';
+import { BackgroundMode } from '@anuradev/capacitor-background-mode';
 
 @Component({
   selector: 'app-root',
@@ -12,22 +16,69 @@ export class AppComponent {
 
   constructor(
     public platForm: Platform,
-    public metaService: Meta
+    public metaService: Meta,
+    private toastrService: ToastService,
   ) {
     if(this.platForm.is('android')){
       this.initNotification();
-    }else {}
+      this.initLocalNotifications();
+    }
   }
 
   ngOnInit(){
+  }
 
-    // this.metaService.removeTag("property='og:url'");
-    // this.metaService.removeTag("property='og:image'");
-    // this.metaService.addTag({ property: 'og:url', content: 'https://angularhttpclient-d6c80.web.app' });
-    // this.metaService.addTag({ property: 'og:image', content: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBzBi45HXAbgiDwur_NYpYHzWaccngbhyQvA&s' });
+  async initLocalNotifications() {
+    const permissionStatus: PermissionStatus = await LocalNotifications.requestPermissions();
+    
+    if (permissionStatus.display === 'granted') {
+      console.log('Local notification permission granted');
+      this.toastrService.successToast('Local notification permission granted!');
+      this.scheduleLocalNotification('Welcome!', 'Welcome to the plugin app!');
+    } else {
+      console.error('Local notification permission not granted');
+      this.toastrService.errorToast('Local notification permission not granted!');
+    }
+    
+    this.registerLocalNotificationListeners();
+  }
 
-    // console.log('Meta tags updated:', this.metaService.getTag("property='og:url'"), this.metaService.getTag("property='og:image'"));
+  registerLocalNotificationListeners() {
+    LocalNotifications.addListener('localNotificationReceived', (notification) => {
+      console.log('Local Notification received: ', notification);
+    });
 
+    LocalNotifications.addListener('localNotificationActionPerformed', (notificationAction) => {
+      console.log('Local Notification action performed: ', notificationAction);
+    });
+  }
+
+  async scheduleLocalNotification(title: string, body: string) {
+    await LocalNotifications.schedule({
+      notifications: [
+        {
+          id: Math.floor(Math.random() * 10000),
+          title: 'Local notification 1',
+          body,
+          schedule: { at: new Date(Date.now() + 1000 * 20) },
+          sound: null,
+          attachments: null,
+          actionTypeId: '',
+          extra: null,
+        },
+        {
+          id: Math.floor(Math.random() * 10000),
+          title: 'Local notification 2',
+          body,
+          schedule: { at: new Date(Date.now() + 1000 * 40) },
+          sound: null,
+          attachments: null,
+          actionTypeId: '',
+          extra: null,
+        },
+      ],
+    });
+    console.log('Local notifications scheduled:');
   }
 
   initNotification(){
@@ -42,7 +93,7 @@ export class AppComponent {
 
     PushNotifications.addListener('registration',
       (token: Token) => {
-        console.log('Push registration success, token: ' + token.value);
+        console.log('Push notification registration success, token: ' + token.value);
       }
     );
 
@@ -54,7 +105,7 @@ export class AppComponent {
 
     PushNotifications.addListener('pushNotificationReceived',
       (notification: PushNotificationSchema) => {
-        console.log('Push received: ', notification);
+        console.log('Push notification received: ', notification);
       }
     );
 

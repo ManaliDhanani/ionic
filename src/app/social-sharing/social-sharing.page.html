@@ -9,12 +9,12 @@
 
 <ion-content [fullscreen]="true" id="page-container">
 
-  <ion-button expand="full" (click)="chooseAndShareFile()">Share File</ion-button>
+  <ion-button expand="full" (click)="chooseAndSharePhoto()" *ngIf="!selectedFile && !platform.is('cordova')">Select Image Web</ion-button>
+  <ion-button expand="full" (click)="shareFile()" *ngIf="selectedFile && !platform.is('cordova')">Share Selected Image</ion-button>
   <input type="file" id="fileInput" style="display: none;" (change)="handleFileInput($event)">
   <ion-button expand="full" (click)="shareScreenShot()">Share Screen Shot</ion-button>
-  <ion-button expand="full" (click)="sharePhoto()">Share Photo</ion-button>
-
-  <!-- <ion-button expand="full" (click)="chooseFile()">Select File</ion-button> -->
+  <ion-button expand="full" (click)="sharePhoto()" *ngIf="platform.is('cordova')">Share Image</ion-button>
+  <ion-button expand="full" (click)="shareFileAndroid()"  *ngIf="platform.is('cordova')">Share File</ion-button>
 
 </ion-content>
 
