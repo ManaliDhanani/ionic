@@ -6,7 +6,7 @@ require('dotenv').config();
 console.log('MAPS_KEY:', process.env['MAPS_KEY']);
 console.log('FIREBASE_API_KEY:', process.env['FIREBASE_API_KEY']);
 
-const targetPath = path.resolve(__dirname, 'src/environments/environment.ts');
+const targetPath = path.resolve(__dirname, 'environment.ts');
 console.log('targetPath: ', targetPath);
 
 const environmentFileContent = `
