@@ -42,7 +42,12 @@ const routes: Routes = [
   {
     path: 'users',
     loadChildren: () => import('./users/users.module').then( m => m.UsersPageModule)
-  },  {
+  },
+  {
+    path: 'firestore-products',
+    loadChildren: () => import('./firestore-products/firestore-products.module').then( m => m.FirestoreProductsPageModule)
+  },
+  {
     path: 'barcode-scanner',
     loadChildren: () => import('./barcode-scanner/barcode-scanner.module').then( m => m.BarcodeScannerPageModule)
   },

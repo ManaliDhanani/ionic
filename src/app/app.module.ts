@@ -19,6 +19,8 @@ import { StoreModule } from '@ngrx/store';
 import { userReducer } from './signup/store/user.reducer';
 import { MediaCapture } from '@awesome-cordova-plugins/media-capture/ngx';
 import { File } from '@awesome-cordova-plugins/file/ngx';
+import { AngularFirestore, AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 
 initializeApp(environment.firebaseConfig);
 // const analytics = getAnalytics();
@@ -35,13 +37,16 @@ initializeApp(environment.firebaseConfig);
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
+    AngularFirestoreModule.enablePersistence(),
+    AngularFireStorageModule,
     StoreModule.forRoot({ users: userReducer })
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     Calendar,
     MediaCapture,
-    File
+    File,
+    AngularFirestore
   ],
   bootstrap: [AppComponent],
 })

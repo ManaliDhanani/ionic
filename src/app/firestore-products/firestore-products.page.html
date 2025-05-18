@@ -1,0 +1,15 @@
+<ion-header [translucent]="true" id="header">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Firestore Products</ion-title>
+  </ion-toolbar>
+  <ion-toolbar>
+    <!-- <ion-searchbar [debounce]="500" color="primary" #search (ionInput)="handleInput(search.value)"></ion-searchbar> -->
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <app-product-list></app-product-list>
+</ion-content>

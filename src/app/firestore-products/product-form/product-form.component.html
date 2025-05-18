@@ -1,0 +1,12 @@
+<form (ngSubmit)="onSubmit()" #productForm="ngForm">
+  <input type="text" name="name" [(ngModel)]="product.name" placeholder="Product Name" required />
+  <input type="text" name="description" [(ngModel)]="product.description" placeholder="Description" required />
+  <input type="number" name="price" [(ngModel)]="product.price" placeholder="Price" required />
+
+  <input type="file" (change)="onFileSelected($event)" />
+
+  <img *ngIf="product.imageUrl" [src]="product.imageUrl" width="100" />
+
+  <button type="submit">{{ product.id ? 'Update' : 'Add' }} Product</button>
+</form>
+  
