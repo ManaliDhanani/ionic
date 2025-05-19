@@ -9,6 +9,7 @@ import { FirebaseAuthentication } from '@capacitor-firebase/authentication';
 import { FacebookLogin, FacebookLoginResponse } from '@capacitor-community/facebook-login';
 import { AnalyticsService } from '../services/analytics.service';
 import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
+import { LiveUpdate } from '@capawesome/capacitor-live-update';
 
 declare var gapi: any;
 @Component({
@@ -32,7 +33,22 @@ export class LoginPage implements OnInit {
     public platform: Platform,
     public analyticsService: AnalyticsService,
     // public googlePlus: GooglePlusOriginal
-  ) {}
+  ) {
+    // this.sync();
+  }
+
+  async sync() {
+  // const current = await LiveUpdate.getCurrentBundle();
+  const result = await LiveUpdate.sync({ channel: 'development' });
+
+  // console.log('Current Bundle ID:', current.bundleId);
+  console.log('result:', result);
+  console.log('Next Bundle ID:', result?.nextBundleId);
+
+  if (result?.nextBundleId) {
+    await LiveUpdate.reload();
+  }
+}
 
   handleRefresh(event) {
     setTimeout(() => {
@@ -42,6 +58,7 @@ export class LoginPage implements OnInit {
   }
 
   async ngOnInit() {
+    this.sync();
    this.LoginForm();
    this.initializeApp();
    await FirebaseAuthentication.signOut();

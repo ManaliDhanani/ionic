@@ -32,7 +32,7 @@ const config: CapacitorConfig = {
     },
     LiveUpdate: {
       appId: "ca5644a6-9b83-4987-ae21-09060784ba34",
-      autoDeleteBundles: true,
+      // autoDeleteBundles: true,
     }
   }
 };

@@ -21,23 +21,25 @@ export class AppComponent {
     private toastrService: ToastService,
   ) {
     if(this.platForm.is('android')){
-      this.sync();
-      this.initNotification();
-      this.initLocalNotifications();
+      // this.sync();
+      // this.initNotification();
+      // this.initLocalNotifications();
     }
   }
 
   ngOnInit(){
   }
 
-  async sync() {
-    const result = await LiveUpdate.sync({ channel: 'development' });
-    console.log("result:", result);
-    console.log("result.nextBundleId:", result.nextBundleId);
-    if (result.nextBundleId) {
-      await LiveUpdate.reload();
-    }
-  };
+  // async sync() {
+  //   // const fetchLatestBundle = await LiveUpdate.fetchLatestBundle();
+  //   // console.log("fetchLatestBundle.bundleId:", fetchLatestBundle.bundleId);
+  //   const result = await LiveUpdate.sync({ channel: 'development' });
+  //   console.log("result:", result);
+  //   console.log("result.nextBundleId:", result.nextBundleId);
+  //   if (result.nextBundleId) {
+  //     await LiveUpdate.reload();
+  //   }
+  // };
 
   async initLocalNotifications() {
     const permissionStatus: PermissionStatus = await LocalNotifications.requestPermissions();
