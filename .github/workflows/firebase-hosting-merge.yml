@@ -20,6 +20,9 @@ jobs:
       - name: Install project dependencies
         run: npm ci --legacy-peer-deps
 
+      - name: Install Ionic CLI
+        run: npm install -g @ionic/cli
+
       - name: Inject environment variables and generate environment.ts and Build Angular app
         env:
           MAPS_KEY: ${{ secrets.MAPS_KEY }}
