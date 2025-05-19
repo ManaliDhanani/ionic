@@ -6,7 +6,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ts-node src/environments/set-env.ts && ng serve",
-    "build": "ts-node src/environments/set-env.ts && ng build",
+    "build": "ts-node src/environments/set-env.ts && ionic build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint"
@@ -23,6 +23,7 @@
     "@angular/platform-browser-dynamic": "^17.0.2",
     "@angular/router": "^17.0.2",
     "@anuradev/capacitor-background-mode": "^6.0.0",
+    "@awesome-cordova-plugins/core": "^6.16.0",
     "@awesome-cordova-plugins/file": "^6.9.0",
     "@awesome-cordova-plugins/media-capture": "^6.9.0",
     "@byteowls/capacitor-filesharer": "^6.0.0",
@@ -51,6 +52,7 @@
     "@capacitor/share": "^6.0.1",
     "@capacitor/status-bar": "6.0.0",
     "@capawesome/capacitor-file-picker": "^6.1.0",
+    "@capawesome/capacitor-live-update": "^7.2.0",
     "@codetrix-studio/capacitor-google-auth": "^3.4.0-rc.4",
     "@ionic-native/calendar": "^5.36.0",
     "@ionic-native/core": "^5.36.0",
@@ -73,6 +75,7 @@
     "cordova-plugin-x-socialsharing": "^6.0.4",
     "es6-promise-plugin": "^4.2.2",
     "firebase": "^10.12.4",
+    "hls.js": "^1.6.2",
     "html2canvas": "^1.4.1",
     "ionicons": "^7.0.0",
     "jsbarcode": "^3.11.6",

@@ -1,0 +1,36 @@
+name: Auto Deploy to Capawesome
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: ⬇️ Checkout code
+        uses: actions/checkout@v4
+
+      - name: ⚙️ Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: 📦 Install dependencies
+        run: npm ci --legacy-peer-deps
+
+      - name: 🔨 Build ionic app
+        run: npm run build
+
+      - name: 🛠 Install Capawesome CLI
+        run: npm install -g @capawesome/cli@latest
+
+      - name: 🔐 Authenticate CLI
+        run: npx capawesome login --token=ca_u9u23j3dmra0vwaze13nrk7brh3l47bo82xy2zb1dnl4kjqa
+
+      - name: 🚀 Deploy Live Update to Capawesome
+        run: |
+          COMMIT_SHA=$(git rev-parse --short HEAD)
+          COMMIT_MSG=$(git log -1 --pretty=format:"%s")
+          npx capawesome apps:bundles:create --path=www --comment="Auto deploy: $COMMIT_SHA - $COMMIT_MSG"

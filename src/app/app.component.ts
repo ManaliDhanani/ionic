@@ -6,6 +6,7 @@ import { LocalNotifications, PermissionStatus } from '@capacitor/local-notificat
 import { AppLauncher } from '@capacitor/app-launcher';
 import { ToastService } from './services/toastr.service';
 import { BackgroundMode } from '@anuradev/capacitor-background-mode';
+import { LiveUpdate } from "@capawesome/capacitor-live-update";
 
 @Component({
   selector: 'app-root',
@@ -20,6 +21,7 @@ export class AppComponent {
     private toastrService: ToastService,
   ) {
     if(this.platForm.is('android')){
+      this.sync();
       this.initNotification();
       this.initLocalNotifications();
     }
@@ -27,6 +29,14 @@ export class AppComponent {
 
   ngOnInit(){
   }
+
+  async sync() {
+    const result = await LiveUpdate.sync();
+    console.log("result:", result);
+    if (result.nextBundleId) {
+      await LiveUpdate.reload();
+    }
+  };
 
   async initLocalNotifications() {
     const permissionStatus: PermissionStatus = await LocalNotifications.requestPermissions();
