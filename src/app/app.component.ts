@@ -33,6 +33,7 @@ export class AppComponent {
   async sync() {
     const result = await LiveUpdate.sync({ channel: 'development' });
     console.log("result:", result);
+    console.log("result.nextBundleId:", result.nextBundleId);
     if (result.nextBundleId) {
       await LiveUpdate.reload();
     }
