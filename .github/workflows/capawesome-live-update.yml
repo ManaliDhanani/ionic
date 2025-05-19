@@ -42,5 +42,8 @@ jobs:
       - name: 🔐 Authenticate CLI
         run: npx capawesome login --token=ca_u9u23j3dmra0vwaze13nrk7brh3l47bo82xy2zb1dnl4kjqa
 
+      - name: Create a channel on Capawesome Cloud
+        run: npx capawesome apps:channels:create --appId ca5644a6-9b83-4987-ae21-09060784ba34 --name "development" --ignore-errors
+
       - name: 🚀 Deploy Live Update to Capawesome
-        run: npx capawesome apps:bundles:create --appId ca5644a6-9b83-4987-ae21-09060784ba34 --path www --channel No
+        run: npx capawesome apps:bundles:create --appId ca5644a6-9b83-4987-ae21-09060784ba34 --path www --channel "development"
