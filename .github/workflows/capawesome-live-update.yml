@@ -43,7 +43,4 @@ jobs:
         run: npx capawesome login --token=ca_u9u23j3dmra0vwaze13nrk7brh3l47bo82xy2zb1dnl4kjqa
 
       - name: 🚀 Deploy Live Update to Capawesome
-        run: |
-          COMMIT_SHA=$(git rev-parse --short HEAD)
-          COMMIT_MSG=$(git log -1 --pretty=format:"%s")
-          npx capawesome apps:bundles:create --appId=ca5644a6-9b83-4987-ae21-09060784ba34 --path=www --comment="Auto deploy: $COMMIT_SHA - $COMMIT_MSG"
+        run: npx capawesome apps:bundles:create --appId ca5644a6-9b83-4987-ae21-09060784ba34 --path www
